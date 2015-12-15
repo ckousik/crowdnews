@@ -20,3 +20,5 @@ app.post('/feed',function(req,res){
 		"message":"feed for "+req.body.feed
 	});
 });
+
+http.listen(process.env.PORT||3000);
