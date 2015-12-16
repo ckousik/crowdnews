@@ -1,7 +1,8 @@
 var express = require('express'),
 app = express(),
 bodyParser = require('body-parser'),
-http = require('http').createServer(app);
+http = require('http').createServer(app),
+db = require('./Db');
 
 app.use(bodyParser.json());
 
@@ -10,9 +11,16 @@ app.post('/',function(req,res){
 });
 
 app.post('/login',function(req,res){
-	res.json({
-		"message":"login request from"+req.body.user
-	});
+	db.authenticateLogin(req.body.username,req.body.password,res);
+});
+
+app.post('/signup',function(req,res){
+	var data = {
+		"username":req.body.username,
+		"password":req.body.password,
+		"email":req.body.email
+	}
+	db.signup(data,res);
 });
 
 app.post('/feed',function(req,res){
