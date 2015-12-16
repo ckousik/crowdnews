@@ -6,7 +6,7 @@ function digest(message){
 }
 
 function getHashed(password){
-		var salt = crypto.randomBytes(64).toString();
+		var salt = crypto.randomBytes(64).toString('base64');
 		var hash = digest(password+salt);
 		return {"hash":hash,"salt":salt}; 	
 }
