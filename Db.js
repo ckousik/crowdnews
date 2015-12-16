@@ -78,6 +78,7 @@ function signOut(data,response){
 		if(users_online[payload.id]){
 			delete users_online[payload.id];
 			resultData.success = true;
+		}
 	}catch(error){
 		resultData.error = error;
 	}finally{
