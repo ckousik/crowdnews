@@ -20,7 +20,7 @@ app.post('/signup',function(req,res){
 		"password":req.body.password,
 		"email":req.body.email
 	}
-	db.signup(data,res);
+	db.signUp(data,res);
 });
 
 app.post('/feed',function(req,res){

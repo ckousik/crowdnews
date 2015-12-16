@@ -11,6 +11,8 @@ client.connect(function (error) {
 	console.log(error);
 });
 
+var users_online = {};
+
 function authenticateLogin(username,password,response){
 	var resultData = {
 		success: false,
@@ -38,6 +40,7 @@ function authenticateLogin(username,password,response){
 				resultData.success = true;
 				resultData.error = null;
 				resultData.token = token;
+				users_online[payload.id]=true;
 			}
 		}
 
@@ -45,7 +48,7 @@ function authenticateLogin(username,password,response){
 	});
 }
 
-function signup(data,response){
+function signUp(data,response){
 	var resultData = {
 		success: false,
 		error: null
@@ -65,5 +68,39 @@ function signup(data,response){
 	});
 }
 
+function signOut(data,response){
+	var resultData = {
+			success : false,
+			error: null
+	}
+	try{
+		var payload = jwt.verify(data.token,secret_key);
+		if(users_online[payload.id]){
+			delete users_online[payload.id];
+			resultData.success = true;
+		}
+		resultData.
+	}catch(error){
+		resultData.error = error;
+	}finally{
+		response.json(resultData);
+	}
+}
+
+function isLoggedIn(data){
+	try{
+		var payload = jwt.verify(data.token,secret_key);
+		if(users_online[payload.id]){
+			return true;
+		}else{
+			return false;
+		}
+	}catch(error){
+		return false;
+	}
+}
+
 module.exports.authenticateLogin = authenticateLogin;
-module.exports.signup = signup;
+module.exports.signUp = signUp;
+module.exports.signOut = signOut;
+module.exports.isLoggedIn = isLoggedIn;
