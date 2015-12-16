@@ -23,6 +23,13 @@ app.post('/signup',function(req,res){
 	db.signUp(data,res);
 });
 
+app.post('/signout',function(req,res){
+	var data = {
+		"token":req.body.token
+	}
+	db.signOut(data,res);
+});
+
 app.post('/feed',function(req,res){
 	res.json({
 		"message":"feed for "+req.body.feed
