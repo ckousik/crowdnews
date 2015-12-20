@@ -29,3 +29,4 @@ function signPayload(payload){
 
 module.exports.getPayload = getPayload;
 module.exports.signPayload = signPayload;
+module.exports.verifyLogin = verifyLogin;
