@@ -30,7 +30,7 @@ var postSchema = new Schema({
 	closest_served_location : {
 		type:String,
 		default: "none"
-	}
+	},
 	user_id:String
 });
 
