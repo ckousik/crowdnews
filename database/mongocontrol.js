@@ -54,6 +54,8 @@ function deleteStory(data,response){
 		if(err){
 			console.log(err);
 			resultData.error = err;
+		}else{
+			resultData.success = true;
 		}
 		response(resultData);
 	});	
