@@ -33,7 +33,7 @@ router.post('/add',function(req,res){
 	}
 
 	mongoControl.addStory(data,function(result){
-
+		res.json(result);
 	});
 });
 
