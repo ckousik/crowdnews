@@ -52,6 +52,7 @@ function deleteStory(data,response){
 	}	
 	Story.remove({_id : data.story_id},function(err,story){
 		if(err){
+			console.log(err);
 			resultData.error = err;
 		}
 		response(resultData);

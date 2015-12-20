@@ -6,6 +6,7 @@ var bodyParser = require('body-parser'),
 router.use(bodyParser.json());
 
 router.use(function(req,res,next){
+	console.log("Token: " + req.body.token);
 	var payload = tokenHandler.verifyLogin(req.body.token);
 	if(payload == null ){
 		res.json({"error":"Invalid token"});
