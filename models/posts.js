@@ -27,8 +27,12 @@ var postSchema = new Schema({
 			min: -180.0
 		}
 	},
-	closest_served_location : String,
+	closest_served_location : {
+		type:String,
+		default: "none"
+	}
 	user_id:String
 });
 
 module.exports.postSchema = postSchema;
+module.exports.Post = mongoose.model('Post',postSchema);

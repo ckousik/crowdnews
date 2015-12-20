@@ -5,6 +5,7 @@ var globals = require('../helper/globals');
 mongoose.connect(globals.mongo_url);
 
 var Story = require('../models/story').Story;
+var Post = require('../models/posts').Post;
 
 function findStories(data,response){
 	var resultData = {
@@ -18,6 +19,25 @@ function findStories(data,response){
 		}else{
 			resultData.success = true;
 			resultData.stories = stories;	
+		}
+		response(resultData);
+	});
+}
+
+function addPost(data,response){
+	var resultData = {
+		success: false,
+		error:null,
+	}
+	var newPost = new Post({title:data.title,content:data.content,user_id:data.id});
+	Story.findOne({_id:data.story_id},function(err,story){
+		if(err){
+			console.log(err);
+			resultData.error = err;
+		}else if(story){
+			story.posts.push(newPost);
+			resultData.success=true;
+			story.save();
 		}
 		response(resultData);
 	});
@@ -64,3 +84,4 @@ function deleteStory(data,response){
 module.exports.findStories = findStories;
 module.exports.addStory = addStory;
 module.exports.deleteStory = deleteStory;
+module.exports.addPost = addPost;
