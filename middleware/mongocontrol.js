@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var tokenHandler = require('./jwthandler');
+var globals = require('../helper/globals');
 
-mongoose.connect("mongodb://ckousik-stories:!QctN1956!@ds033135.mongolab.com:33135/stories");
+mongoose.connect(globals.mongo_url);
 
 var Story = require('../models/story').Story;
 
