@@ -1,6 +1,6 @@
 var jwt = require('jsonwebtoken');
 var db = require('./Db');
-var secret_key = require('../helper/globals').secret_key;
+var secret_key = process.env.SECRET_KEY;
 
 function getPayload(token){
 	try{
