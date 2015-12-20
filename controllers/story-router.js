@@ -16,7 +16,7 @@ router.use(function(req,res,next){
 
 router.post('/find',function(req,res){
 	var data = {
-		id: req.body.id;
+		id: req.body.id
 	}
 	mongoControl.findStories(data,function(result){
 		res.json(result);
