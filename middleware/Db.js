@@ -1,7 +1,7 @@
 var pg = require('pg');
 var globals = require('../helper/globals');
 var client = new pg.Client(globals.db_url);
-var secret_key = globals.SECRET_KEY;
+var secret_key = process.env.SECRET_KEY;
 var hash = require('../helper/hash');
 var jwt = require('jsonwebtoken');
 var util = require('util');
