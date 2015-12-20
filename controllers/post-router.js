@@ -18,7 +18,7 @@ router.use(function(req,res,next){
 router.post('/add',function(req,res){
 	var user_id = tokenHandler.getPayload(req.body.token).id;
 	var data = {
-		story_id:data.story_id;
+		story_id:data.story_id,
 		id:user_id,
 		title:req.body.title,
 		content:req.body.content
