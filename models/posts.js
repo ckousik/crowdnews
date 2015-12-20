@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-	id:String,
 	title:String,
 	content:String,
 	created_at : {
@@ -29,8 +28,7 @@ var postSchema = new Schema({
 		}
 	},
 	closest_served_location : String,
-	user_id:String,
-	story_id:String
+	user_id:String
 });
 
 module.exports.postSchema = postSchema;

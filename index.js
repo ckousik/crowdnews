@@ -11,7 +11,9 @@ app.post('/',function(req,res){
 });
 
 app.post('/login',function(req,res){
-	db.authenticateLogin(req.body.username,req.body.password,res);
+	db.authenticateLogin(req.body.username,req.body.password,function(result){
+		res.json(result);
+	});
 });
 
 app.post('/signup',function(req,res){
@@ -20,14 +22,18 @@ app.post('/signup',function(req,res){
 		"password":req.body.password,
 		"email":req.body.email
 	}
-	db.signUp(data,res);
+	db.signUp(data,function(result){
+		res.json(result);
+	});
 });
 
 app.post('/signout',function(req,res){
 	var data = {
 		"token":req.body.token
 	}
-	db.signOut(data,res);
+	db.signOut(data,function(result){
+		res.json(result);
+	});
 });
 
 app.post('/feed',function(req,res){

@@ -13,7 +13,7 @@ client.connect(function (error) {
 
 var users_online = {};
 
-function authenticateLogin(username,password,response){
+function authenticateLogin(username,password,response_function){
 	var resultData = {
 		success: false,
 		error:null,
@@ -44,11 +44,11 @@ function authenticateLogin(username,password,response){
 			}
 		}
 
-		response.json(resultData);
+		response_function(resultData);
 	});
 }
 
-function signUp(data,response){
+function signUp(data,response_function){
 	var resultData = {
 		success: false,
 		error: null
@@ -64,11 +64,11 @@ function signUp(data,response){
 		if(result){
 			resultData.success = true;
 		}
-		response.json(resultData);
+		response_function(resultData);
 	});
 }
 
-function signOut(data,response){
+function signOut(data,response_function){
 	var resultData = {
 			success : false,
 			error: null
@@ -82,21 +82,16 @@ function signOut(data,response){
 	}catch(error){
 		resultData.error = error;
 	}finally{
-		response.json(resultData);
+		response_function(resultData);
 	}
 }
 
-function isLoggedIn(data){
-	try{
-		var payload = jwt.verify(data.token,secret_key);
-		if(users_online[payload.id]){
-			return true;
-		}else{
-			return false;
-		}
-	}catch(error){
+function isLoggedIn(payload){
+	if(users_online[payload.id]){
+		return true;
+	}else{
 		return false;
-	}
+	}	
 }
 
 module.exports.authenticateLogin = authenticateLogin;
