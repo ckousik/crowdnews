@@ -16,4 +16,24 @@ router.post('/login',function(req,res){
 	});
 });
 
+router.post('/logout',function(req,res){
+	var data = {
+		"token":req.body.token
+	}
+	db.logout(data,function(result){
+		res.json(result);
+	});
+});
+
+router.post('/signup',function(req,res){
+	var data = {
+		"username":req.body.username,
+		"password":req.body.password,
+		"email":req.body.email
+	}
+	db.signUp(data,function(result){
+		res.json(result);
+	});
+});
+
 module.exports.router = router;

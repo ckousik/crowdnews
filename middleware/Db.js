@@ -68,7 +68,7 @@ function signUp(data,response_function){
 	});
 }
 
-function signOut(data,response_function){
+function logOut(data,response_function){
 	var resultData = {
 			success : false,
 			error: null
@@ -96,5 +96,5 @@ function isLoggedIn(payload){
 
 module.exports.authenticateLogin = authenticateLogin;
 module.exports.signUp = signUp;
-module.exports.signOut = signOut;
+module.exports.logOut = logOut;
 module.exports.isLoggedIn = isLoggedIn;
