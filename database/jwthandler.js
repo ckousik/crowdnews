@@ -19,6 +19,7 @@ function verifyLogin(token){
 		else
 			return null;
 	}catch(error){
+		console.log(error);
 		return null;
 	}	
 }
