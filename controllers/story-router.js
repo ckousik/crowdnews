@@ -15,8 +15,9 @@ router.use(function(req,res,next){
 });
 
 router.post('/find',function(req,res){
+	var user_id = tokenHandler.getPayload(req.body.token).id;
 	var data = {
-		id: req.body.id
+		id: user_id
 	}
 	mongoControl.findStories(data,function(result){
 		res.json(result);
@@ -24,8 +25,9 @@ router.post('/find',function(req,res){
 });
 
 router.post('/add',function(req,res){
+	var user_id = tokenHandler.getPayload(req.body.token).id;
 	var data = {
-		id:req.body.id,
+		id:user_id,
 		title: req.body.title,
 		description: req.body.description
 	}
