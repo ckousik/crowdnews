@@ -2,7 +2,7 @@ var express = require('express'),
 app = express(),
 bodyParser = require('body-parser'),
 http = require('http').createServer(app),
-db = require('./Db');
+db = require('./middleware/Db');
 
 app.use(bodyParser.json());
 
@@ -16,6 +16,16 @@ app.post('/login',function(req,res){
 	});
 });
 
+
+app.post('/signout',function(req,res){
+	var data = {
+		"token":req.body.token
+	}
+	db.signOut(data,function(result){
+		res.json(result);
+	});
+});
+
 app.post('/signup',function(req,res){
 	var data = {
 		"username":req.body.username,
@@ -23,15 +33,6 @@ app.post('/signup',function(req,res){
 		"email":req.body.email
 	}
 	db.signUp(data,function(result){
-		res.json(result);
-	});
-});
-
-app.post('/signout',function(req,res){
-	var data = {
-		"token":req.body.token
-	}
-	db.signOut(data,function(result){
 		res.json(result);
 	});
 });

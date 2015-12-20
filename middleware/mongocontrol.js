@@ -3,7 +3,7 @@ var tokenHandler = require('./jwthandler');
 
 mongoose.connect("mongodb://ckousik-stories:!QctN1956!@ds033135.mongolab.com:33135/stories");
 
-var Story = require('./models/story').Story;
+var Story = require('../models/story').Story;
 
 function findStories(token,response){
 	var resultData = {
